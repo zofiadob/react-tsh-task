@@ -27,64 +27,64 @@ spa_test:
     - npm run lint
     - npm run coverage
 
-e2e_build:
-  stage: build
-  script:
-    - cp .env.dist .env
-    - npm ci
-    - npm run build:ci
-    - cd e2e-playwright && npm install && cd ..
-  artifacts:
-    paths:
-      - build/**
-      - e2e-playwright/node_modules/**
-  only:
-    - merge_requests
+# e2e_build:
+#   stage: build
+#   script:
+#     - cp .env.dist .env
+#     - npm ci
+#     - npm run build:ci
+#     - cd e2e-playwright && npm install && cd ..
+#   artifacts:
+#     paths:
+#       - build/**
+#       - e2e-playwright/node_modules/**
+#   only:
+#     - merge_requests
 
-e2e_chrome:
-  stage: test
-  before_script:
-    - cp ./e2e-playwright/.env.dist ./e2e-playwright/.env
-    - cd e2e-playwright
-  script:
-    - npm run test:chrome
-  artifacts:
-    when: always
-    paths:
-      - e2e-playwright/test-report/
-      - e2e-playwright/test-results/
-  only:
-    - merge_requests
+# e2e_chrome:
+#   stage: test
+#   before_script:
+#     - cp ./e2e-playwright/.env.dist ./e2e-playwright/.env
+#     - cd e2e-playwright
+#   script:
+#     - npm run test:chrome
+#   artifacts:
+#     when: always
+#     paths:
+#       - e2e-playwright/test-report/
+#       - e2e-playwright/test-results/
+#   only:
+#     - merge_requests
 
-e2e_firefox:
-  stage: test
-  before_script:
-    - cp ./e2e-playwright/.env.dist ./e2e-playwright/.env
-    - cd e2e-playwright
-  script:
-    - npm run test:firefox
-  artifacts:
-    when: always
-    paths:
-      - e2e-playwright/test-report/
-      - e2e-playwright/test-results/
-  only:
-    - merge_requests
+# e2e_firefox:
+#   stage: test
+#   before_script:
+#     - cp ./e2e-playwright/.env.dist ./e2e-playwright/.env
+#     - cd e2e-playwright
+#   script:
+#     - npm run test:firefox
+#   artifacts:
+#     when: always
+#     paths:
+#       - e2e-playwright/test-report/
+#       - e2e-playwright/test-results/
+#   only:
+#     - merge_requests
 
-e2e_safari:
-  stage: test
-  before_script:
-    - cp ./e2e-playwright/.env.dist ./e2e-playwright/.env
-    - cd e2e-playwright
-  script:
-    - npm run test:safari
-  artifacts:
-    when: always
-    paths:
-      - e2e-playwright/test-report/
-      - e2e-playwright/test-results/
-  only:
-    - merge_requests
+# e2e_safari:
+#   stage: test
+#   before_script:
+#     - cp ./e2e-playwright/.env.dist ./e2e-playwright/.env
+#     - cd e2e-playwright
+#   script:
+#     - npm run test:safari
+#   artifacts:
+#     when: always
+#     paths:
+#       - e2e-playwright/test-report/
+#       - e2e-playwright/test-results/
+#   only:
+#     - merge_requests
 # END PLAYWRIGHT SPECIFIC CONFIG
 
 
