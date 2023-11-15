@@ -55,7 +55,7 @@ npm start
 Copyright © 2021-present The Software House. This source code is licensed under the MIT license found in the
 [LICENSE](LICENSE.md) file.
 
----
+----
 <sup>
 Made with ♥ by The Software House (<a href="https://tsh.io">website</a>, <a href="https://tsh.io/blog">blog</a>)
 </sup>
