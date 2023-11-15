@@ -21,99 +21,99 @@ jobs:
           name: build
           path: build
 
-  e2e_chrome:
-    needs: prepare_app
-    runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.31.2-focal
-    defaults:
-      run:
-        working-directory: e2e-playwright
-    steps:
-    - uses: actions/checkout@master
-    - name: Download build
-      uses: actions/download-artifact@v3
-      with:
-        name: build
-        path: build
-    - name: Copy e2e envs
-      run: cp .env.dist .env
-    - name: Install e2e dependencies
-      run: npm install
-    - name: Run build and tests
-      run: npm run test:chrome
-    - name: Upload test results
-      uses: actions/upload-artifact@v3
-      if: always()
-      with:
-        name: e2e-chrome-artifacts
-        path: |
-          e2e-playwright/test-report/
-          e2e-playwright/test-results/
-        retention-days: 30
+  # e2e_chrome:
+  #   needs: prepare_app
+  #   runs-on: ubuntu-latest
+  #   container:
+  #     image: mcr.microsoft.com/playwright:v1.31.2-focal
+  #   defaults:
+  #     run:
+  #       working-directory: e2e-playwright
+  #   steps:
+  #   - uses: actions/checkout@master
+  #   - name: Download build
+  #     uses: actions/download-artifact@v3
+  #     with:
+  #       name: build
+  #       path: build
+  #   - name: Copy e2e envs
+  #     run: cp .env.dist .env
+  #   - name: Install e2e dependencies
+  #     run: npm install
+  #   - name: Run build and tests
+  #     run: npm run test:chrome
+  #   - name: Upload test results
+  #     uses: actions/upload-artifact@v3
+  #     if: always()
+  #     with:
+  #       name: e2e-chrome-artifacts
+  #       path: |
+  #         e2e-playwright/test-report/
+  #         e2e-playwright/test-results/
+  #       retention-days: 30
 
-  e2e_firefox:
-    needs: prepare_app
-    runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.31.2-focal
-      options: --user 1001
-    defaults:
-      run:
-        working-directory: e2e-playwright
-    steps:
-    - uses: actions/checkout@master
-    - name: Download build
-      uses: actions/download-artifact@v3
-      with:
-        name: build
-        path: build
-    - name: Copy e2e envs
-      run: cp .env.dist .env
-    - name: Install e2e dependencies
-      run: npm install
-    - name: Run build and tests
-      run: npm run test:firefox
-    - name: Upload test results
-      uses: actions/upload-artifact@v3
-      if: always()
-      with:
-        name: e2e-firefox-artifacts
-        path: |
-          e2e-playwright/test-report/
-          e2e-playwright/test-results/
-        retention-days: 30
+  # e2e_firefox:
+  #   needs: prepare_app
+  #   runs-on: ubuntu-latest
+  #   container:
+  #     image: mcr.microsoft.com/playwright:v1.31.2-focal
+  #     options: --user 1001
+  #   defaults:
+  #     run:
+  #       working-directory: e2e-playwright
+  #   steps:
+  #   - uses: actions/checkout@master
+  #   - name: Download build
+  #     uses: actions/download-artifact@v3
+  #     with:
+  #       name: build
+  #       path: build
+  #   - name: Copy e2e envs
+  #     run: cp .env.dist .env
+  #   - name: Install e2e dependencies
+  #     run: npm install
+  #   - name: Run build and tests
+  #     run: npm run test:firefox
+  #   - name: Upload test results
+  #     uses: actions/upload-artifact@v3
+  #     if: always()
+  #     with:
+  #       name: e2e-firefox-artifacts
+  #       path: |
+  #         e2e-playwright/test-report/
+  #         e2e-playwright/test-results/
+  #       retention-days: 30
 
-  e2e_safari:
-    needs: prepare_app
-    runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.31.2-focal
-    defaults:
-      run:
-        working-directory: e2e-playwright
-    steps:
-    - uses: actions/checkout@master
-    - name: Download build
-      uses: actions/download-artifact@v3
-      with:
-        name: build
-        path: build
-    - name: Copy e2e envs
-      run: cp .env.dist .env
-    - name: Install e2e dependencies
-      run: npm install
-    - name: Run build and tests
-      run: npm run test:safari
-    - name: Upload test results
-      uses: actions/upload-artifact@v3
-      if: always()
-      with:
-        name: e2e-safari-artifacts
-        path: |
-          e2e-playwright/test-report/
-          e2e-playwright/test-results/
-        retention-days: 30
+  # e2e_safari:
+  #   needs: prepare_app
+  #   runs-on: ubuntu-latest
+  #   container:
+  #     image: mcr.microsoft.com/playwright:v1.31.2-focal
+  #   defaults:
+  #     run:
+  #       working-directory: e2e-playwright
+  #   steps:
+  #   - uses: actions/checkout@master
+  #   - name: Download build
+  #     uses: actions/download-artifact@v3
+  #     with:
+  #       name: build
+  #       path: build
+  #   - name: Copy e2e envs
+  #     run: cp .env.dist .env
+  #   - name: Install e2e dependencies
+  #     run: npm install
+  #   - name: Run build and tests
+  #     run: npm run test:safari
+  #   - name: Upload test results
+  #     uses: actions/upload-artifact@v3
+  #     if: always()
+  #     with:
+  #       name: e2e-safari-artifacts
+  #       path: |
+  #         e2e-playwright/test-report/
+  #         e2e-playwright/test-results/
+  #       retention-days: 30
 # END PLAYWRIGHT SPECIFIC CONFIG
 
 

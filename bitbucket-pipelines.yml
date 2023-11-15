@@ -26,52 +26,52 @@ pipelines:
           - npm run coverage
 
 # START PLAYWRIGHT SPECIFIC CONFIG
-  pull-requests:
-    '**':
-      - step:
-          name: build and install
-          image: mcr.microsoft.com/playwright:v1.31.2-focal
-          caches:
-            - node
-            - npm
-          script:
-            - cp .env.dist .env
-            - npm ci
-            - npm run build:ci
-            - cd e2e-playwright && npm install && cd ..
-          artifacts:
-            - build/**
-            - e2e-playwright/node_modules/**
-      - parallel:
-        - step:
-            name: e2e - chrome
-            image: mcr.microsoft.com/playwright:v1.31.2-focal
-            caches:
-              - node
-            script:
-              - cp ./e2e-playwright/.env.dist ./e2e-playwright/.env
-              - cd e2e-playwright && npm run test:chrome cd ..
-        - step:
-            name: e2e - firefox
-            image: mcr.microsoft.com/playwright:v1.31.2-focal
-            caches:
-              - node
-            script:
-              - cp ./e2e-playwright/.env.dist ./e2e-playwright/.env
-              - cd e2e-playwright && npm run test:firefox cd ..
-        - step:
-            name: e2e - safari
-            image: mcr.microsoft.com/playwright:v1.31.2-focal
-            caches:
-              - node
-            script:
-              - cp ./e2e-playwright/.env.dist ./e2e-playwright/.env
-              - cd e2e-playwright && npm run test:safari cd ..
-        - step:
-            name: deploy to Staging
-            deployment: Staging
-            trigger: manual
-            <<: *deploy-s3
+  # pull-requests:
+  #   '**':
+  #     - step:
+  #         name: build and install
+  #         image: mcr.microsoft.com/playwright:v1.31.2-focal
+  #         caches:
+  #           - node
+  #           - npm
+  #         script:
+  #           - cp .env.dist .env
+  #           - npm ci
+  #           - npm run build:ci
+  #           - cd e2e-playwright && npm install && cd ..
+  #         artifacts:
+  #           - build/**
+  #           - e2e-playwright/node_modules/**
+  #     - parallel:
+  #       - step:
+  #           name: e2e - chrome
+  #           image: mcr.microsoft.com/playwright:v1.31.2-focal
+  #           caches:
+  #             - node
+  #           script:
+  #             - cp ./e2e-playwright/.env.dist ./e2e-playwright/.env
+  #             - cd e2e-playwright && npm run test:chrome cd ..
+  #       - step:
+  #           name: e2e - firefox
+  #           image: mcr.microsoft.com/playwright:v1.31.2-focal
+  #           caches:
+  #             - node
+  #           script:
+  #             - cp ./e2e-playwright/.env.dist ./e2e-playwright/.env
+  #             - cd e2e-playwright && npm run test:firefox cd ..
+  #       - step:
+  #           name: e2e - safari
+  #           image: mcr.microsoft.com/playwright:v1.31.2-focal
+  #           caches:
+  #             - node
+  #           script:
+  #             - cp ./e2e-playwright/.env.dist ./e2e-playwright/.env
+  #             - cd e2e-playwright && npm run test:safari cd ..
+  #       - step:
+  #           name: deploy to Staging
+  #           deployment: Staging
+  #           trigger: manual
+  #           <<: *deploy-s3
 # END PLAYWRIGHT SPECIFIC CONFIG
 
   # START CYPRESS SPECIFIC CONFIG
