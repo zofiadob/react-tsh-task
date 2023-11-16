@@ -12,6 +12,7 @@ export function CustomButton({ text, variant, isDisabled = false, onClickFunc }:
     <Button
       as="button"
       onClick={onClickFunc}
+      w={'100%'}
       isDisabled={isDisabled}
       transition="all 0.2s ease"
       border="1px"

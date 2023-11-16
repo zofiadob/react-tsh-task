@@ -4,6 +4,7 @@ import { extendTheme } from '@chakra-ui/react'
 export const theme = extendTheme({
   colors: {
     mainGray: {
+      50: "#F8F8FA",
       100: "#F0F1F5",
       200: "#E0E2EA",
       300: "#B9BDCF",
@@ -11,7 +12,6 @@ export const theme = extendTheme({
       800: "#1A1B1D",
     },
     mainBlue: {
-      light: "#4460F7",
       500: "#4460F7",
       600: "#2140E8",
     },
@@ -25,4 +25,17 @@ export const theme = extendTheme({
   fonts: {
     body: "Nunito Variable, sans-serif",
   },
+  styles: {
+    global: {
+      '*': {
+        boxSizing: "border-box"
+      },
+      'body': {
+        margin: 0,
+        fontWeight: 600,
+        minHeight: "100vh",
+        backgroundColor: "#F8F8FA"
+      }
+    }
+  }
 });

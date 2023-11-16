@@ -3,5 +3,8 @@
   "product_searchbar_placeholder": "Search",
   "log_in": "Log in",
   "promo": "Promo",
-  "active": "Active"
+  "active": "Active",
+  "show_details": "Show details",
+  "empty_products_header": "Ooops… It's empty here",
+  "there_are_no_products": "There are no products on the list"
 }

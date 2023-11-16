@@ -6,7 +6,7 @@ import { useBreakpointValue } from '@chakra-ui/react';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { TranslationValue } from 'ui/translation/Translation';
 import { CustomCheckbox } from '../CustomCheckbox/CustomCheckbox';
-import CustomButton from '../CustomButton/CustomButton';
+import { CustomButton } from '../CustomButton/CustomButton';
 
 export function ProductMenu() {
   const loginButtonText = TranslationValue({ id: 'log_in' });
@@ -24,7 +24,14 @@ export function ProductMenu() {
   });
 
   return (
-    <Flex flexWrap={'wrap'} alignItems={'center'}>
+    <Flex
+      flexWrap={'wrap'}
+      alignItems={'center'}
+      marginBottom={'1.5rem'}
+      paddingY={{ base: '2rem' }}
+      paddingX={{ base: '2rem', lg: '6rem' }}
+      bg={'white'}
+    >
       <Flex justifyContent={'space-between'} w={{ base: '100%', md: 'auto' }}>
         <Box p="4" pl={{ base: 0, md: 4 }} marginRight={{ base: '.5rem', lg: '6rem' }}>
           <ChakraLink as={ReactRouterLink} to="/" fontSize={'2xl'} fontWeight={600}>
@@ -47,7 +54,7 @@ export function ProductMenu() {
       <Box flex="1" display={loginButtonLargeViewport}>
         <Flex justifyContent={'right'}>
           <Box p="4">
-            <CustomButton variant="solid" text={loginButtonText} />
+            <CustomButton variant="outline" text={loginButtonText} />
           </Box>
         </Flex>
       </Box>
