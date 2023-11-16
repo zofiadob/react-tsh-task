@@ -1,13 +1,17 @@
-import { Button, Flex, Box } from '@chakra-ui/react';
+import { Button, Flex, Box, Stack } from '@chakra-ui/react';
 import { Link as ReactRouterLink } from 'react-router-dom';
 import { Link as ChakraLink } from '@chakra-ui/react';
 import { useBreakpointValue } from '@chakra-ui/react';
 
 import { SearchBar } from '../SearchBar/SearchBar';
 import { TranslationValue } from 'ui/translation/Translation';
+import { CustomCheckbox } from '../CustomCheckbox/CustomCheckbox';
+import CustomButton from '../CustomButton/CustomButton';
 
 export function ProductMenu() {
   const loginButtonText = TranslationValue({ id: 'log_in' });
+  const checkboxActiveText = TranslationValue({ id: 'active' });
+  const checkboxPromoText = TranslationValue({ id: 'promo' });
 
   const loginButtonLargeViewport = useBreakpointValue({
     base: 'none',
@@ -32,12 +36,18 @@ export function ProductMenu() {
         </Box>
       </Flex>
       <Box flex="3">
-        <SearchBar />
+        <Flex w={'100%'} flexWrap={'wrap'} rowGap={'1.5rem'}>
+          <SearchBar />
+          <Stack spacing={8} direction="row">
+            <CustomCheckbox text={checkboxActiveText} />
+            <CustomCheckbox text={checkboxPromoText} />
+          </Stack>
+        </Flex>
       </Box>
       <Box flex="1" display={loginButtonLargeViewport}>
         <Flex justifyContent={'right'}>
           <Box p="4">
-            <Button variant={'outline'}>{loginButtonText}</Button>
+            <CustomButton variant="solid" text={loginButtonText} />
           </Box>
         </Flex>
       </Box>

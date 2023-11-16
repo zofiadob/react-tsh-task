@@ -15,7 +15,12 @@ export const theme = extendTheme({
       500: "#4460F7",
       600: "#2140E8",
     },
-    mainYellow: "#F9A52B"
+    mainYellow: "#F9A52B",
+    buttonsColor: {
+      200: "#4460F7",
+      300: "#2140E8",
+      400: "#4460F7",
+    }
   },
   fonts: {
     body: "Nunito Variable, sans-serif",
