@@ -1,3 +1,7 @@
 {
-  "home.helloWorld": "Witaj świecie"
+  "home.helloWorld": "Witaj świecie",
+  "product_searchbar_placeholder": "Szukaj",
+  "log_in": "Zaloguj",
+  "promo": "Promocja",
+  "active": "Dostępne"
 }

@@ -1,3 +1,7 @@
 {
-  "home.helloWorld": "Hello World"
+  "home.helloWorld": "Hello World",
+  "product_searchbar_placeholder": "Search",
+  "log_in": "Log in",
+  "promo": "Promo",
+  "active": "Active"
 }
