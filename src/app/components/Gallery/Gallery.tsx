@@ -13,7 +13,7 @@ export function Gallery({ data }: Props) {
   const columns = isDataExist ? { base: '1fr', sm: 'repeat(2, 1fr)', lg: 'repeat(4, 1fr)' } : { base: '1fr' };
 
   return (
-    <Grid justifyContent={'center'} templateColumns={columns} gap={6} height={'100%'}>
+    <Grid justifyContent={'center'} templateColumns={columns} gap={6} height={'100%'} textAlign={'left'}>
       {isDataExist ? data.map((product) => <ItemCard key={product.id} data={product} />) : <EmptyCard />}
     </Grid>
   );

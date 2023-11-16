@@ -1,4 +1,4 @@
-import { Box, Spinner } from '@chakra-ui/react';
+import { Box, Spinner, useToast } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
 import { getProducts } from 'api/actions/products';
@@ -10,16 +10,31 @@ export function ProductsGallery() {
   // const [metaData, setMetaData] = useState<MetaData | {}>({});
   const [isLoading, setIsLoading] = useState(true);
 
+  const toast = useToast();
+
   useEffect(() => {
-    getProducts().then((data) => {
-      setProductsData(data.items);
-      // setMetaData(data.meta);
-      setIsLoading(false);
-    });
+    const fetchData = async () => {
+      try {
+        const products = await getProducts();
+        setProductsData(products.items);
+        // setMetaData(data.meta);
+        setIsLoading(false);
+      } catch (error) {
+        toast({
+          title: `${error}`,
+          description: 'Something went wrong. Try again later.',
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+        setIsLoading(false);
+      }
+    };
+    fetchData();
   }, []);
 
   return (
-    <Box bg={'mainGray.50'} w={'100%'} paddingX={{ base: '2rem', lg: '6rem' }} paddingY={'3.5rem'}>
+    <Box bg={'mainGray.50'} textAlign={'center'} w={'100%'} paddingX={{ base: '2rem', lg: '6rem' }} paddingY={'3.5rem'}>
       {isLoading ? (
         <Spinner thickness="4px" speed="1.5s" emptyColor="gray.200" color="blue.500" size="xl" />
       ) : (

@@ -12,8 +12,8 @@ interface Props {
 
 export function ItemCard({ data }: Props) {
   return (
-    <Card maxW="sm">
-      <CardBody padding={0}>
+    <Card maxW="100%">
+      <CardBody padding={0} position={'relative'}>
         {data.promo && (
           <Box
             minW={'4.5rem'}
@@ -23,6 +23,7 @@ export function ItemCard({ data }: Props) {
             textAlign={'center'}
             px={'1rem'}
             top={'1rem'}
+            zIndex={'2'}
           >
             {TranslationValue({ id: 'promo' })}
           </Box>
@@ -30,8 +31,11 @@ export function ItemCard({ data }: Props) {
         <Image
           src={data.image}
           alt="Green double couch with wooden legs"
+          filter={data.active ? 'auto' : 'grayscale(100%)'}
+          opacity={data.active ? '100%' : '50%'}
           w={'100%'}
           maxH={'13rem'}
+          objectFit={'cover'}
           borderRadius=".5rem .5rem 0 0"
         />
         <Stack mt="4" spacing="2" px={4}>
@@ -45,7 +49,11 @@ export function ItemCard({ data }: Props) {
         <RatingBox rating={data.rating} />
       </Box>
       <Box w={'100%'} padding={'1rem 1rem 1.5rem 1rem'}>
-        <CustomButton text={TranslationValue({ id: 'show_details' })} variant="solid" />
+        <CustomButton
+          text={data.active ? TranslationValue({ id: 'show_details' }) : TranslationValue({ id: 'unavailable' })}
+          variant="solid"
+          isDisabled={!data.active}
+        />
       </Box>
     </Card>
   );
