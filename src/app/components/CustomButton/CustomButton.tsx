@@ -1,13 +1,13 @@
 import { Button } from '@chakra-ui/react';
 
-interface props {
+interface Props {
   text: string;
   variant: 'solid' | 'outline';
   isDisabled?: boolean;
   onClickFunc?: () => void;
 }
 
-export function CustomButton({ text, variant, isDisabled = false, onClickFunc }: props) {
+export function CustomButton({ text, variant, isDisabled = false, onClickFunc }: Props) {
   return (
     <Button
       as="button"

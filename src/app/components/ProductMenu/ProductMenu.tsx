@@ -8,7 +8,13 @@ import { TranslationValue } from 'ui/translation/Translation';
 import { CustomCheckbox } from '../CustomCheckbox/CustomCheckbox';
 import { CustomButton } from '../CustomButton/CustomButton';
 
-export function ProductMenu() {
+interface Props {
+  setSearchTerm: (searchTerm: string) => void;
+  setActiveFilter: (isActive: boolean) => void;
+  setPromoFilter: (isPromo: boolean) => void;
+}
+
+export function ProductMenu({ setSearchTerm, setActiveFilter, setPromoFilter }: Props) {
   const loginButtonText = TranslationValue({ id: 'log_in' });
   const checkboxActiveText = TranslationValue({ id: 'active' });
   const checkboxPromoText = TranslationValue({ id: 'promo' });
@@ -44,10 +50,10 @@ export function ProductMenu() {
       </Flex>
       <Box flex="3">
         <Flex w={'100%'} flexWrap={'wrap'} rowGap={'1.5rem'}>
-          <SearchBar />
+          <SearchBar setSearchTerm={setSearchTerm} />
           <Stack spacing={8} direction="row">
-            <CustomCheckbox text={checkboxActiveText} />
-            <CustomCheckbox text={checkboxPromoText} />
+            <CustomCheckbox text={checkboxActiveText} setCheckboxValue={setActiveFilter} />
+            <CustomCheckbox text={checkboxPromoText} setCheckboxValue={setPromoFilter} />
           </Stack>
         </Flex>
       </Box>
