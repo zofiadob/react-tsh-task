@@ -3,6 +3,7 @@
 [PROJECT_DESCRIPTION]
 
 This project was bootstrapped with [Vite](https://github.com/vitejs/vite) and modified by TSH team.
+Recrutation project.
 
 ## Quick Start
 
