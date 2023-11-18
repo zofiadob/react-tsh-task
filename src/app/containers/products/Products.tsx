@@ -3,8 +3,8 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { theme } from 'assets/styles/style';
 import { useEffect, useState } from 'react';
 
-import { ProductMenu } from 'app/components/ProductMenu/ProductMenu';
-import { ProductsGallery } from 'app/components/ProductsGallery/ProductsGallery';
+import { ProductMenu } from 'app/components/Product/ProductMenu/ProductMenu';
+import { ProductsGallery } from 'app/components/Product/ProductsGallery/ProductsGallery';
 import { getProducts } from 'api/actions/products';
 import { Product, getRequestProps } from 'api/types/productsTypes';
 import { PaginationBar } from 'app/components/PaginationBar/PaginationBar';

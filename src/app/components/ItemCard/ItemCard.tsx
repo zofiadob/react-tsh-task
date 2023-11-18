@@ -3,7 +3,7 @@ import { Box, Card, CardBody, Image, Stack, Text, useDisclosure } from '@chakra-
 import { Product } from 'api/types/productsTypes';
 import { CustomButton } from '../CustomButton/CustomButton';
 import { TranslationValue } from 'ui/translation/Translation';
-import { ProductModal } from '../ProductModal/ProductModal';
+import { ProductModal } from '../Product/ProductModal/ProductModal';
 
 import { RatingBox } from './RatingBox';
 

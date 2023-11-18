@@ -3,10 +3,10 @@ import { Link as ReactRouterLink } from 'react-router-dom';
 import { Link as ChakraLink } from '@chakra-ui/react';
 import { useBreakpointValue } from '@chakra-ui/react';
 
-import { SearchBar } from '../SearchBar/SearchBar';
+import { SearchBar } from '../../SearchBar/SearchBar';
 import { TranslationValue } from 'ui/translation/Translation';
-import { CustomCheckbox } from '../CustomCheckbox/CustomCheckbox';
-import { CustomButton } from '../CustomButton/CustomButton';
+import { CustomCheckbox } from '../../CustomCheckbox/CustomCheckbox';
+import { CustomButton } from '../../CustomButton/CustomButton';
 
 interface Props {
   setSearchTerm: (searchTerm: string) => void;
