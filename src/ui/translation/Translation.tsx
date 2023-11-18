@@ -8,3 +8,9 @@ export const Translation = ({ id, values }: TranslationProps) => {
 
   return <>{formatMessage({ id: AppMessages[id] }, values)}</>;
 };
+
+export const TranslationValue = ({ id, values }: TranslationProps) => {
+  const { formatMessage } = useLocale();
+
+  return formatMessage({ id: AppMessages[id] }, values);
+};
