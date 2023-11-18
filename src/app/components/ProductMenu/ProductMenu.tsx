@@ -1,4 +1,4 @@
-import { Button, Flex, Box, Stack } from '@chakra-ui/react';
+import { Flex, Box, Stack } from '@chakra-ui/react';
 import { Link as ReactRouterLink } from 'react-router-dom';
 import { Link as ChakraLink } from '@chakra-ui/react';
 import { useBreakpointValue } from '@chakra-ui/react';
@@ -45,7 +45,7 @@ export function ProductMenu({ setSearchTerm, setActiveFilter, setPromoFilter }: 
           </ChakraLink>
         </Box>
         <Box p="4" pr={{ base: 0, md: 4 }} display={loginButtonSmalleViewport}>
-          <Button variant={'outline'}>{loginButtonText}</Button>
+          <CustomButton variant="outline" text={loginButtonText} />
         </Box>
       </Flex>
       <Box flex="3">

@@ -1,8 +1,9 @@
-import { Box, Card, CardBody, Image, Stack, Text } from '@chakra-ui/react';
+import { Box, Card, CardBody, Image, Stack, Text, useDisclosure } from '@chakra-ui/react';
 
 import { Product } from 'api/types/productsTypes';
 import { CustomButton } from '../CustomButton/CustomButton';
 import { TranslationValue } from 'ui/translation/Translation';
+import { ProductModal } from '../ProductModal/ProductModal';
 
 import { RatingBox } from './RatingBox';
 
@@ -11,6 +12,8 @@ interface Props {
 }
 
 export function ItemCard({ data }: Props) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Card maxW="100%">
       <CardBody padding={0} position={'relative'}>
@@ -53,8 +56,18 @@ export function ItemCard({ data }: Props) {
           text={data.active ? TranslationValue({ id: 'show_details' }) : TranslationValue({ id: 'unavailable' })}
           variant="solid"
           isDisabled={!data.active}
+          onClickFunc={onOpen}
         />
       </Box>
+      {isOpen && (
+        <ProductModal
+          isOpen={isOpen}
+          onClose={onClose}
+          header={data.name}
+          description={data.description}
+          image={data.image}
+        />
+      )}
     </Card>
   );
 }
