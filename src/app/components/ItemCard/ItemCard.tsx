@@ -39,6 +39,8 @@ export function ItemCard({ data }: Props) {
             opacity={data.active ? '100%' : '50%'}
             w={'100%'}
             maxH={'13rem'}
+            minH={'10rem'}
+            bg={'mainGray.400'}
             objectFit={'cover'}
             borderRadius=".5rem .5rem 0 0"
           />
