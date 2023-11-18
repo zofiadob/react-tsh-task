@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react';
 
 import { Product } from 'api/types/productsTypes';
-import { Gallery } from '../Gallery/Gallery';
+import { Gallery } from '../../Gallery/Gallery';
 
 interface Props {
   products: Product[] | [];

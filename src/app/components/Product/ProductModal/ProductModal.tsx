@@ -1,6 +1,6 @@
 import { Image, Modal, ModalBody, ModalContent, ModalOverlay, Stack, Text } from '@chakra-ui/react';
 
-import closeIcon from '../../../assets/images/close.svg';
+import closeIcon from '../../../../assets/images/close.svg';
 
 interface Props {
   isOpen: boolean;
