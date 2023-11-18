@@ -11,7 +11,7 @@ export function RatingBox({ rating }: Props) {
   const imageArray = Array.from({ length: 5 }, (_, index) => index + 1);
 
   return (
-    <Flex gap={2}>
+    <Flex gap={2} minH={'13px'}>
       {imageArray.map((rate) => (
         <Image key={rate} src={rate <= rating ? fullStar : emptyStar} />
       ))}
