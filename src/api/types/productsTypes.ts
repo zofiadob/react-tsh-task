@@ -16,6 +16,14 @@ export interface Product {
   active: boolean;
 }
 
+export interface getRequestProps {
+  search?: string;
+  limit?: number;
+  page?: number;
+  promo?: boolean | null;
+  active?: boolean | null;
+}
+
 export interface GetProductsResult {
   items: Product[];
   meta: MetaData;

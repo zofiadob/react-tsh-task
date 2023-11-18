@@ -31,16 +31,18 @@ export function ItemCard({ data }: Props) {
             {TranslationValue({ id: 'promo' })}
           </Box>
         )}
-        <Image
-          src={data.image}
-          alt="Green double couch with wooden legs"
-          filter={data.active ? 'auto' : 'grayscale(100%)'}
-          opacity={data.active ? '100%' : '50%'}
-          w={'100%'}
-          maxH={'13rem'}
-          objectFit={'cover'}
-          borderRadius=".5rem .5rem 0 0"
-        />
+        <Box>
+          <Image
+            src={data.image}
+            alt="Green double couch with wooden legs"
+            filter={data.active ? 'auto' : 'grayscale(100%)'}
+            opacity={data.active ? '100%' : '50%'}
+            w={'100%'}
+            maxH={'13rem'}
+            objectFit={'cover'}
+            borderRadius=".5rem .5rem 0 0"
+          />
+        </Box>
         <Stack mt="4" spacing="2" px={4}>
           <Text size="lg">{data.name}</Text>
           <Text fontSize="sm" lineHeight="1rem" color="mainGray.400">

@@ -6,12 +6,14 @@ import { useEffect, useState } from 'react';
 import { ProductMenu } from 'app/components/ProductMenu/ProductMenu';
 import { ProductsGallery } from 'app/components/ProductsGallery/ProductsGallery';
 import { getProducts } from 'api/actions/products';
-import { Product } from 'api/types/productsTypes';
+import { Product, getRequestProps } from 'api/types/productsTypes';
+import { PaginationBar } from 'app/components/PaginationBar/PaginationBar';
 
 export const Products = () => {
-  const [productsData, setProductsData] = useState<Product[] | []>([]);
   const [filteredData, setFilteredData] = useState<Product[] | []>([]);
-  // const [metaData, setMetaData] = useState<MetaData | {}>({});
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const productsPerPage = 8;
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -24,10 +26,9 @@ export const Products = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const products = await getProducts();
-        setProductsData(products.items);
+        const products = await getProducts({ limit: productsPerPage, page: currentPage });
         setFilteredData(products.items);
-        // setMetaData(data.meta);
+        setTotalPages(products.meta.totalPages);
         setIsLoading(false);
       } catch (error) {
         toast({
@@ -44,34 +45,85 @@ export const Products = () => {
   }, []);
 
   useEffect(() => {
-    let currentFilteredData = productsData;
+    setIsLoading(true);
+    const fetchData = async () => {
+      try {
+        const queries: getRequestProps = {
+          search: searchTerm,
+          limit: productsPerPage,
+          page: 1,
+        };
+        if (isActive) {
+          queries.active = isActive;
+        }
+        if (isPromo) {
+          queries.promo = isPromo;
+        }
 
-    if (searchTerm !== '') {
-      currentFilteredData = currentFilteredData.filter((product) =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase()),
-      );
-    }
-
-    if (isActive) {
-      currentFilteredData = currentFilteredData.filter((product) => product.active === true);
-    }
-
-    if (isPromo) {
-      currentFilteredData = currentFilteredData.filter((product) => product.promo === true);
-    }
-
-    setFilteredData(currentFilteredData);
+        const products = await getProducts(queries);
+        setFilteredData(products.items);
+        setCurrentPage(1);
+        setTotalPages(products.meta.totalPages);
+        setIsLoading(false);
+      } catch (error) {
+        toast({
+          title: `${error}`,
+          description: 'Something went wrong. Try again later.',
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+        setIsLoading(false);
+      }
+    };
+    fetchData();
   }, [searchTerm, isActive, isPromo]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    const fetchData = async () => {
+      try {
+        const queries: getRequestProps = {
+          search: searchTerm,
+          limit: productsPerPage,
+          page: currentPage,
+        };
+        if (isActive) {
+          queries.active = isActive;
+        }
+        if (isPromo) {
+          queries.promo = isPromo;
+        }
+
+        const products = await getProducts(queries);
+        setFilteredData(products.items);
+        setIsLoading(false);
+      } catch (error) {
+        toast({
+          title: `${error}`,
+          description: 'Something went wrong. Try again later.',
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, [currentPage]);
 
   return (
     <ChakraProvider theme={theme}>
       <Box maxW={'100%'}>
         <ProductMenu setSearchTerm={setSearchTerm} setActiveFilter={setIsActive} setPromoFilter={setIsPromo} />
         {isLoading ? (
-          <Spinner thickness="4px" speed="1.5s" emptyColor="gray.200" color="blue.500" size="xl" />
+          <Box position={'absolute'} left={'50%'} top={'50%'}>
+            <Spinner thickness="4px" speed="1.5s" emptyColor="mainGray.200" color="mainBlue.500" size="xl" />
+          </Box>
         ) : (
           <Box>
             <ProductsGallery products={filteredData} />
+            <PaginationBar currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
           </Box>
         )}
       </Box>

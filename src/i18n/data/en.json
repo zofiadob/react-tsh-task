@@ -7,5 +7,7 @@
   "show_details": "Show details",
   "unavailable": "Unavailable",
   "empty_products_header": "Ooops… It's empty here",
-  "there_are_no_products": "There are no products on the list"
+  "there_are_no_products": "There are no products on the list",
+  "first": "First",
+  "last": "Last"
 }
