@@ -31,6 +31,7 @@ export function PaginationBar({ currentPage, setCurrentPage, totalPages }: Props
     <Flex justifyContent={'center'} gap={8} marginBottom={14}>
       <Box>
         <Text
+          fontSize={'sm'}
           color={'mainGray.400'}
           _hover={{
             textDecoration: 'underline',
@@ -45,6 +46,7 @@ export function PaginationBar({ currentPage, setCurrentPage, totalPages }: Props
         {pagesArray.map((page) => (
           <Text
             key={page}
+            fontSize={'sm'}
             color={page === currentPage ? 'mainBlue.500' : 'mainGray.800'}
             onClick={() => handlePageChange(page)}
             _hover={{
@@ -58,6 +60,7 @@ export function PaginationBar({ currentPage, setCurrentPage, totalPages }: Props
       </Flex>
       <Box>
         <Text
+          fontSize={'sm'}
           _hover={{
             textDecoration: 'underline',
             cursor: 'pointer',

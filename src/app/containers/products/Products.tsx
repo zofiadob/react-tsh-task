@@ -117,13 +117,15 @@ export const Products = () => {
       <Box maxW={'100%'}>
         <ProductMenu setSearchTerm={setSearchTerm} setActiveFilter={setIsActive} setPromoFilter={setIsPromo} />
         {isLoading ? (
-          <Box position={'absolute'} left={'50%'} top={'50%'}>
+          <Box position={'absolute'} left={'50%'} top={'50%'} transform={'translate(-50%, -50%)'}>
             <Spinner thickness="4px" speed="1.5s" emptyColor="mainGray.200" color="mainBlue.500" size="xl" />
           </Box>
         ) : (
           <Box>
             <ProductsGallery products={filteredData} />
-            <PaginationBar currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
+            {totalPages > 0 && (
+              <PaginationBar currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
+            )}
           </Box>
         )}
       </Box>
